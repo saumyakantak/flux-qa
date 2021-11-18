@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: javapp
-  namespace: nx2
+  namespace: nx3
 spec:
   replicas: 1
   selector:
