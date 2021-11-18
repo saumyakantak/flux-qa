@@ -1,0 +1,41 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    name: nx2
+  name: nx2
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javapp
+  namespace: nx2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: javapp
+  template:
+    metadata:
+      labels:
+        app: javapp
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: deploy
+                operator: In
+                values:
+                - nexus
+      containers:
+      - name: javapp
+        image: 3.89.70.197:32001/javapp:2.4.5
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: regsecret
