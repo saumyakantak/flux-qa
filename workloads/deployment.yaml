@@ -24,7 +24,7 @@ spec:
                 - nexus
       containers:
       - name: javapp
-        image: 3.89.70.197:32001/javapp:2.5.6
+        image: 3.89.70.197:32001/javapp:2.6.0
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
